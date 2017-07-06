@@ -81,7 +81,7 @@ def getData(filePath,label): # get the full image without cutting
 def getFeat(Data,mode): # get and save feature valuve
     num = 0  
     for data in Data:  
-        image = np.reshape(data[0].T, (200, 200, 3)) 
+        image = np.reshape(data[0], (200, 200, 3)) 
         gray = rgb2gray(image)/255.0 # trans image to gray
         fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm, visualize, normalize)  
         fd = np.concatenate((fd, data[1])) # add label in the end of the array
