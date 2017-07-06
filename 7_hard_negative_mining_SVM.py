@@ -12,7 +12,6 @@ import cv2
 def trainSvm(datas, labels):
 #    clf = ssv.SVC(kernel='rbf', C=51.888660461910455, gamma=6.340844354646774e-05) #10,50,100
     clf = ssv.SVC(kernel='rbf', C=36.076088, gamma=0.000075) #10,100,500
-#    clf = ssv.SVC(kernel='rbf', C=61.663137, gamma=0.000003) #10,50,500,home
     print "Training a SVM Classifier."
     clf.fit(datas, labels)
     return clf
@@ -75,9 +74,6 @@ if __name__ == "__main__":
                     continue
                 if window.shape[0] != 200 or window.shape[1] != 200:
                     window = cv2.resize(window,(200,200),interpolation=cv2.INTER_CUBIC)
-                window = np.reshape(window, (200 * 200,3))
-                window.shape = 1,3,-1
-                window = np.reshape(window.T, (200, 200,3))
                 gray = rgb2gray(window)/255.0
                 window_fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm, visualize, normalize)
                 window_fd.shape = 1,-1
