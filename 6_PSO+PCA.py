@@ -1,7 +1,5 @@
 from sklearn.externals import joblib
 import os
-#import sys
-#sys.path.append('/home/xuegengjian/renhanchi/libsvm-3.22/python')
 from svmutil import svm_train
 import numpy as np
 import glob
