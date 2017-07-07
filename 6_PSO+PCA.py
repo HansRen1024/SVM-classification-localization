@@ -8,7 +8,7 @@ import glob
 import random
 import copy
 
-n = 500
+n = 2000
 train_feat_path = './features/train'
 
 birds = 20 # size of population
@@ -17,6 +17,7 @@ pos = [] # population of class
 speed = []
 bestpos = []
 initpos = []
+tempfit = []
 birdsbestpos = []
 fds = []
 dict_fds = []
@@ -71,6 +72,7 @@ for i in range(birds):
     speed.append([])
     bestpos.append([])
     initpos.append([])
+    tempfit.append([])
 
 def CalDis(list):
     fitness=0.0
@@ -79,8 +81,8 @@ def CalDis(list):
     return fitness
 
 for i in range(birds):          #initial all birds' pos,speed
-    pos[i].append(random.uniform(10,20))
-    pos[i].append(random.uniform(0.9e-06, 1.5e-06)) # 1/num_features
+    pos[i].append(random.uniform(10,30))
+    pos[i].append(random.uniform(0.5e-06, 1e-06)) # 1/num_features
     speed[i].append(float(0))
     speed[i].append(float(0))
 #    speed[i].append(random.uniform(-10,10))
@@ -93,11 +95,11 @@ def FindBirdsMostPos():
     index = 0
     for i in range(birds):
         print "\n>>>>>The %d'd time to find globel best pos. Total %d times.\n" %(i+1, birds)
-        temp = CalDis(bestpos[i])
-        if temp > best:
-            best = temp
+        tempfit[i] = CalDis(bestpos[i])
+        if tempfit[i] > best:
+            best = tempfit[i]
             index = i
-            print '------- %d: %f' %(index, -best)
+            print '------- %d: %f' %(index, best)
     return best, bestpos[index]
 
 print "\n-------------------------Initial Globel Best Pos----------------------------------\n"
@@ -132,21 +134,21 @@ def UpdateSpeed():
 
 def UpdatePos():
     print "Update Pos."
-    global bestpos,birdsbestpos
+    global bestpos,birdsbestpos,tempfit
     for i in range(birds):
         if pos[i][0]+speed[i][0] > 0 and pos[i][1]+speed[i][1] > 0: 
             VecAddVec(pos[i],speed[i])
-            if CalDis(pos[i]) > CalDis(bestpos[i]):
+            if CalDis(pos[i]) > tempfit[i]:
                 bestpos[i] = copy.deepcopy(pos[i])
     best_predict, birdsbestpos = FindBirdsMostPos()
-    return birdsbestpos
+    return best_predict, birdsbestpos
 
 for asd in range(maxgen):
     print "\n>>>>>>>>The %d'd time to update parameters. Total %d times\n" %(asd+1, maxgen)
     UpdateSpeed()
-    best_para = UpdatePos()
+    best_predict, best_para = UpdatePos()
     
-    allbestpos.append(best_para)
+    allbestpos.append([best_para, best_predict])
     f=open('result/PSO_%s-%s-%s.txt' %(birds,maxgen,n),'w')
     f.write(str(allbestpos))
     f.close()
