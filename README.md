@@ -29,3 +29,5 @@ I think I should clarify the steps for the program.
 2. For step 4, you can also use features processed by pca, but I strongly advise you to hold as possible as more features. Because more features, higher accuracy.
 
 中文地址：http://blog.csdn.net/renhanchi/article/category/7007663
+
+强烈建议将6篇文章都仔细看一遍，再来跑代码，或者边看边跑。内容不是很多，但是会对你理解算法和代码有很大帮助。
