@@ -83,7 +83,8 @@ def getFeat(Data,mode): # get and save feature valuve
     for data in Data:  
         image = np.reshape(data[0], (200, 200, 3)) 
         gray = rgb2gray(image)/255.0 # trans image to gray
-        fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm, visualize, normalize)  
+        fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm, visualize)
+#         fd = hog(gray, orientations, pixels_per_cell, cells_per_block, block_norm, visualize, normalize)  
         fd = np.concatenate((fd, data[1])) # add label in the end of the array
         filename = list(data[2])  
         fd_name = filename[0].split('.')[0]+'.feat' # set file name  
