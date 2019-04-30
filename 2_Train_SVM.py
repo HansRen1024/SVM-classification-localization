@@ -25,7 +25,8 @@ if __name__ == "__main__":
         print "%d Dealing with %s" %(num,feat_path)  
     t0 = time.time()  
 #------------------------SVM--------------------------------------------------  
-    clf = ssv.SVC(kernel='rbf')  
+    clf = ssv.SVC(kernel='rbf') # for training initial model
+#     clf = ssv.SVC(kernel='rbf', C=17.255220940030252, gamma=1.2943653125547475e-06) # for training svm_pso.model(origin model)
     print "Training a SVM Classifier."  
     clf.fit(fds, labels)  
     joblib.dump(clf, model_path)
