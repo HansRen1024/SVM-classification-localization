@@ -2,6 +2,9 @@
 HoG, PCA, PSO, Hard Negative Mining, Sliding Window, NMS
 
 
+![image](https://github.com/HandsomeHans/SVM-classification-localization/blob/master/example.gif)
+
+
 Best way to do detection is:
 
 HoG(features) -> PCA(less features) + PSO(best C&gamma) -> origin SVM -> HNM(more features) -> better SVM -> SW -> NMS(bbox regression)
