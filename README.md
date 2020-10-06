@@ -1,4 +1,4 @@
-# SVM-classification-detection
+# SVM-classification-detection (Python2.7)
 HoG, PCA, PSO, Hard Negative Mining, Sliding Window, NMS
 
 
