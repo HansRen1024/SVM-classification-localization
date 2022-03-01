@@ -52,7 +52,7 @@ if __name__ == "__main__":
         labels.append(data[-1])   
         print "%d Dealing with %s" %(num,feat_path)  
 #------------------------PCA--------------------------------------------------   
-    fds = np.array(fds,dtype = int)   
+    fds = np.array(fds,dtype = int) #TODO, force to int format may damage the value to be all 0.
     fds.shape = 2327,-1 # 2327 is the number of trainset  
     fds= pca(fds,n)  
 #------------------------PCA--------------------------------------------------   
